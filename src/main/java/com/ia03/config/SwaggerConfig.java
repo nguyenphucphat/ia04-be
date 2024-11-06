@@ -22,7 +22,7 @@ public class SwaggerConfig {
   public OpenAPI openApi() {
     Server server = new Server();
     server.setUrl(endPoint);
-    server.setDescription("IA03 backend service development");
+    server.setDescription("IA04 backend service development");
 
     Contact contact = new Contact();
     contact.setEmail("21120521@student.hcmus.edu.vn");
