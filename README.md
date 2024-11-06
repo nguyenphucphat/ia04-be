@@ -1,6 +1,6 @@
 # IA04 - BE
 
-Đây là ứng dụng IA03-BE. Ứng dụng này cung cấp API cho các tính năng chính của hệ thống đăng ký người dùng IA04.
+Đây là ứng dụng IA04-BE. Ứng dụng này cung cấp API cho các tính năng chính của hệ thống đăng ký người dùng IA04.
 
 ## Thông Tin Tài Liệu API
 
