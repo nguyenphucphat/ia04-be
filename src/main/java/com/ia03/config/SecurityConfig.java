@@ -37,7 +37,8 @@ public class SecurityConfig implements WebMvcConfigurer {
     "https://ia03.vercel.app",
     "https://ia03-ps-projects-8d58c350.vercel.app",
     "http://localhost:3000",
-    "http://127.0.0.1:3000"
+    "http://127.0.0.1:3000",
+    "*"
   };
   private static final String[] CORS_ALLOWED_HEADERS = {"*"};
   private static final String[] CORS_EXPOSED_HEADERS = {"*"};

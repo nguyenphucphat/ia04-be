@@ -25,7 +25,7 @@ public class AccountController {
   }
 
   @PostMapping("/login")
-  @Operation(tags = "=Account APIs", summary = "Login a user")
+  @Operation(tags = "Account APIs", summary = "Login a user")
   @ResponseStatus(HttpStatus.OK)
   public BaseResponse<LoginResponse> login(@RequestBody @Valid LoginRequest request) {
     return BaseResponse.of(userService.login(request));
