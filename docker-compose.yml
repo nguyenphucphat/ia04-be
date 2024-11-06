@@ -1,18 +1,5 @@
 version: '3.8'
 services:
-  mysql-db:
-    image: mysql:latest
-    container_name: mysql_db
-    environment:
-      MYSQL_ROOT_PASSWORD: ia03
-      MYSQL_DATABASE: ia03
-      MYSQL_USER: ia03
-      MYSQL_PASSWORD: ia03
-    volumes:
-      - mysql_data:/var/lib/mysql
-    networks:
-      - usui-network
-
   springboot-app:
     container_name: ia03-be
     image: ia03-be
@@ -20,63 +7,5 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    environment:
-      - VIRTUAL_HOST=ia03.web-hcmus.usui.id.vn
-      - LETSENCRYPT_HOST=ia03.web-hcmus.usui.id.vn
-      - LETSENCRYPT_EMAIL=dieplientu112003@gmail.com
-      - VIRTUAL_PORT=8080
-    networks:
-      - usui-network
-    depends_on:
-      - mysql-db
-
-  nginx-proxy-dev:
-    image: jwilder/nginx-proxy
-    container_name: nginx-proxy-dev
     ports:
-      - '80:80'
-      - '443:443'
-    environment:
-      - ENABLE_IPV6=true
-    privileged: true
-    volumes:
-      - vhostd:/etc/nginx/vhost.d
-      - nginxcerts:/etc/nginx/certs:ro
-      - nginxconf:/etc/nginx/conf.d
-      - nginxlogs:/var/log/nginx
-      - /usr/share/nginx/html:/usr/share/nginx/html:rw
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-    networks:
-      - usui-network
-    labels:
-      - 'nginx_proxy=true'
-      - com.github.nginx-proxy.nginx
-
-  letsencrypt-nginx-proxy-dev:
-    image: jrcs/letsencrypt-nginx-proxy-companion
-    container_name: letsencrypt-nginx-proxy-dev
-    environment:
-      - NGINX_PROXY_CONTAINER=nginx-proxy-dev
-      - RENEW_PRIVATE_KEYS=false
-      - LETSENCRYPT_TEST=false
-    volumes:
-      - vhostd:/etc/nginx/vhost.d
-      - nginxcerts:/etc/nginx/certs:rw
-      - /usr/share/nginx/html:/usr/share/nginx/html:rw
-      - /etc/acme.sh:/etc/acme.sh:rw
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    networks:
-      - usui-network
-    depends_on:
-      - nginx-proxy-dev
-
-volumes:
-  mysql_data:
-  vhostd:
-  nginxcerts:
-  nginxconf:
-  nginxlogs:
-  html:
-
-networks:
-  usui-network:
+      - "8080:8080"
